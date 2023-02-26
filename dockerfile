@@ -12,7 +12,7 @@ RUN		service mariadb restart
 
 RUN		service mariadb start &&\
 		mysql -u root -e "CREATE DATABASE wordpress;" && \
-    	mysql -u root -e "CREATE USER 'hjrifi'@'localhost' IDENTIFIED BY 'password';" && \
+    	mysql -u root -e "CREATE USER 'hjrifi'@'localhost' IDENTIFIED BY 'lcom';" && \
   		mysql -u root -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'hjrifi'@'localhost';" && \
 	   	mysql -u root -e "FLUSH PRIVILEGES;"
 
@@ -26,6 +26,7 @@ RUN		rm latest.tar.gz
 RUN		mv wordpress /var/www/html/
 RUN		chown -R www-data:www-data /var/www/html/
 
+COPY	wp-config.php /var/www/html/wordpress/wp-config.php
 COPY	default.conf /etc/nginx/conf.d/default.conf
 COPY	index.html  /usr/share/nginx/web/index.html
 COPY	hjrifi.ma.key	/etc/nginx/ssl/hjrifi.ma/hjrifi.ma.key
