@@ -33,6 +33,6 @@ COPY	index.html  /usr/share/nginx/web/index.html
 COPY	hjrifi.ma.key	/etc/nginx/ssl/hjrifi.ma/hjrifi.ma.key
 COPY	hjrifi.ma.crt  /etc/nginx/ssl/hjrifi.ma/hjrifi.ma.crt
 
-ENTRYPOINT ["bash", "/scripts/wp-install-wordpress.sh"]
+ENTRYPOINT ["bash", "scripts/wp-install-wrodpress.sh"]
 
 CMD ["bash"]
