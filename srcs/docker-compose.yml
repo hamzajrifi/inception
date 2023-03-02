@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+#wordpress and php-fpm
+  mariadb:
+    build: ./requirements/mariadb/
+    restart: always
+    volumes:
+      - database:/var/lib/mysql
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx/
+    restart: always
+    ports:
+      - "443:443"
+    volumes:
+      - wordpress:/var/hjrifi.ma
+  wordpress:
+      container_name: wordpress
+      build: ./requirements/wordpress/
+      restart: always
+      volumes:
+        - wordpress:/var/hjrifi.ma
+volumes:
+  database:
+  wordpress:

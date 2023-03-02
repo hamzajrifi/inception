@@ -18,7 +18,10 @@ RUN		mv wordpress /var/www/html/
 RUN		chown -R www-data:www-data /var/www/html/
 
 COPY	wp-install-wordpress.sh /scripts/wp-install-wrodpress.sh
+
 COPY	wp-config.php /var/www/html/wordpress/wp-config.php
+COPY	www.conf /etc/php/7.3/fpm/pool.d/www.conf
+
 COPY	default.conf /etc/nginx/conf.d/default.conf
 COPY	index.html  /usr/share/nginx/web/index.html
 COPY	hjrifi.ma.key	/etc/nginx/ssl/hjrifi.ma/hjrifi.ma.key
