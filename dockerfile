@@ -1,11 +1,11 @@
 FROM debian:buster
 
 RUN apt-get update && apt-get install tzdata -y && \
-				apt-get install -y vim \
-				nginx\
-				php-fpm php-mysql \
-				mariadb-server \
-				wget 
+		apt-get install -y vim \
+		nginx\
+		php-fpm php-mysql \
+		mariadb-server \
+		wget 
 
 RUN		wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN 	chmod +x wp-cli.phar
