@@ -12,5 +12,5 @@
         echo "Database 'wordpress' already exists."
     fi
     
-    # service mysql stop
+    service mysql stop
     exec $@
