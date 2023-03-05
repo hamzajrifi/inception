@@ -8,18 +8,21 @@ RUN     wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cl
 RUN     chmod +x wp-cli.phar
 RUN     mv wp-cli.phar /usr/local/bin/wp
 
-WORKDIR /tmp/hjrifi.ma
-RUN     if [ ! -d "/home/colonel/data/wordpress" ]; then \
+WORKDIR         /var/hjrifi.ma
+
+RUN     if [ ! -d "/var/hjrifi.ma/wordpress" ]; then \
                 echo "------ install wordpress ------ ...." && \
                 wget https://wordpress.org/latest.tar.gz && \
                 tar xzvf latest.tar.gz && \
                 rm latest.tar.gz && \
-                chown -R www-data:www-data /tmp/hjrifi.ma/wordpress;\
+                chown -R www-data:www-data /var/hjrifi.ma/wordpress;\
         fi
 
 RUN     sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 0.0.0.0:9000/g'  /etc/php/7.3/fpm/pool.d/www.conf
+
+# update file conf | use it in volume 
+COPY     /conf/wp-config.php /var/hjrifi.ma/wordpress/wp-config.php
 COPY	/tools/wp-install-wordpress.sh /scripts/wp-install-wrodpress.sh
-COPY	/conf/wp-config.php /tmp/hjrifi.ma/wordpress/wp-config.php
 
 
 ENTRYPOINT ["bash", "/scripts/wp-install-wrodpress.sh"]

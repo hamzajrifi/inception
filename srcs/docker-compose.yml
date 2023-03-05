@@ -10,6 +10,7 @@ services:
       - ./.env
     volumes:
       - database:/var/lib/mysql
+      # - /home/colonel/data/vol_db/wordpress:/var/lib/mysql/wordpress
   wordpress:
     depends_on:
       - mariadb
@@ -19,7 +20,8 @@ services:
     env_file:
       - ./.env
     volumes:
-      - /home/colonel/data:/var/hjrifi.ma
+      # - wordpress:/var/hjrifi.ma
+      - /home/colonel/data/vol_wp/wordpress:/var/wordpress
   nginx:
     depends_on:
       - wordpress
@@ -29,7 +31,8 @@ services:
     ports:
       - "443:443"
     volumes:
-      - /home/colonel/data:/var/hjrifi.ma
+      # - wordpress:/var/hjrifi.ma
+      - /home/colonel/data/vol_wp/wordpress:/var/wordpress
   
 volumes:
   database:
