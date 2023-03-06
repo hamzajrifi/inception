@@ -1,0 +1,2 @@
+echo:                                                 cannot open `echo' (No such file or directory)
+sudo setfacl -m user:colonel:rw /var/run/docker.sock: cannot open `sudo setfacl -m user:colonel:rw /var/run/docker.sock' (No such file or directory)

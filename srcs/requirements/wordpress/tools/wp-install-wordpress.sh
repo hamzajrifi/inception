@@ -9,10 +9,10 @@
         wp core install  --url=${WORDPRESS_URL} --title=${WORDPRESS_TITLE} --admin_user=${WORDPRESS_DB_USER} --admin_password=${WORDPRESS_ADMIN_PASSWORD} --admin_email=${WORDPRESS_ADMIN_EMAIL} --allow-root
         wp option update home ${WORDPRESS_URL} --allow-root
         wp option update siteurl  ${WORDPRESS_URL} --allow-root
-        # wp user create 'othmane' 'othmane@mail.com' --role=author --user_pass='lcom' --allow-root
+        wp user create 'othmane' 'othmane@mail.com' --role=author --user_pass='lcom' --allow-root
         wp theme install twentynineteen --allow-root
         wp theme activate twentynineteen --allow-root
-
+        chown -R www-data:www-data /var/hjrifi.ma/wordpress
 
     # cd 
     service php7.3-fpm stop

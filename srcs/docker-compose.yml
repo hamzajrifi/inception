@@ -1,39 +1,55 @@
 version: '3'
 
+
 services:
-#wordpress and php-fpm
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb/
     restart: always
     env_file:
       - ./.env
+    networks:
+      - jrifi_net
     volumes:
-      - database:/var/lib/mysql
-      # - /home/colonel/data/vol_db/wordpress:/var/lib/mysql/wordpress
+      - db-mariadb:/var/lib/mysql
   wordpress:
     depends_on:
       - mariadb
+    networks:
+      - jrifi_net
     container_name: wordpress
     build: ./requirements/wordpress/
     restart: always
     env_file:
       - ./.env
     volumes:
-      # - wordpress:/var/hjrifi.ma
-      - /home/colonel/data/vol_wp/wordpress:/var/wordpress
+      - db-wordpress:/var/hjrifi.ma
   nginx:
     depends_on:
       - wordpress
+    networks:
+      - jrifi_net
     container_name: nginx
     build: ./requirements/nginx/
     restart: always
     ports:
       - "443:443"
     volumes:
-      # - wordpress:/var/hjrifi.ma
-      - /home/colonel/data/vol_wp/wordpress:/var/wordpress
-  
+      - db-wordpress:/var/hjrifi.ma
+
 volumes:
-  database:
-  # wordpress:
+  dbd-mariadb:
+  db-mariadb:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/colonel/data/mysql
+  db-wordpress:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/colonel/data/vol_wp/wordpress
+networks:
+  jrifi_net:
