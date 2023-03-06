@@ -1,0 +1,6 @@
+write all cmd wp-cli
+file conf nginx
+root / ~
+fastcgi fpm 
+
+        # mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '${MYSQL_PASSWORD}' WITH GRANT OPTION";

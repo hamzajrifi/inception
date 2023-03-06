@@ -38,7 +38,6 @@ services:
       - db-wordpress:/var/hjrifi.ma
 
 volumes:
-  dbd-mariadb:
   db-mariadb:
     driver: local
     driver_opts:
@@ -50,6 +49,6 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/colonel/data/vol_wp/wordpress
+      device: /home/colonel/data/wordpress
 networks:
   jrifi_net:
