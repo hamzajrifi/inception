@@ -24,9 +24,20 @@ services:
       - ./.env
     volumes:
       - db-wordpress:/var/hjrifi.ma
+  adminer:
+    depends_on:
+      - mariadb
+    networks:
+      - jrifi_net
+    container_name: adminer
+    build: ./requirements/adminer/
+    restart: always
+    volumes:
+      - db-adminer:/var/adminer
   nginx:
     depends_on:
       - wordpress
+      - adminer
     networks:
       - jrifi_net
     container_name: nginx
@@ -35,7 +46,9 @@ services:
     ports:
       - "443:443"
     volumes:
-      - db-wordpress:/var/hjrifi.ma
+      - db-wordpress:/var/hjrifi.ma/
+      - db-adminer:/var/adminer
+  
 
 volumes:
   db-mariadb:
@@ -43,12 +56,18 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/colonel/data/mysql
+      device: /home/hjrifi/data/mysql
   db-wordpress:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /home/colonel/data/wordpress
+      device: /home/hjrifi/data/wordpress
+  db-adminer:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/hjrifi/data/adminer
 networks:
   jrifi_net:

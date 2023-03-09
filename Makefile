@@ -1,8 +1,8 @@
 all: check_if_data_exist
-	cd srcs && docker-compose up --build
+	cd srcs && docker-compose up --build 
 
 check_if_data_exist :
-	mkdir -p /home/colonel/data/mysql /home/colonel/data/wordpress
+	mkdir -p /home/hjrifi/data/mysql /home/hjrifi/data/wordpress /home/hjrifi/data/adminer 
 # mkdir -p /Users/hjrifi/data/mysql /Users/hjrifi/data/wordpress
 
 up:
@@ -17,7 +17,17 @@ build_no_cache:
 down:
 	cd srcs && docker-compose down
 
-CONTAINER_COUNT := $(shell docker ps -q | wc -l)
+delete_wp_db:
+	sudo rm -rf /home/hjrifi/data/wordpress
+delete_adminer_db:
+	sudo rm -rf /home/hjrifi/data/adminer 
+delete_mariadb_db:
+	sudo rm -rf /home/hjrifi/data/mysql
+
+delete_all_db:
+	sudo rm -rf /home/hjrifi/data/mysql /home/hjrifi/data/wordpress /home/hjrifi/data/adminer 
+
+CONTAINER_COUNT := $(shell docker ps -aq | wc -l)
 VOLUME_COUNT := $(shell docker volume ls -q | wc -l)
 IMAGES_COUNT := $(shell docker images  -q | wc -l)
 

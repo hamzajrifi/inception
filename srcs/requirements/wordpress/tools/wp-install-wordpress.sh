@@ -10,8 +10,8 @@
         wp option update home ${WORDPRESS_URL} --allow-root
         wp option update siteurl  ${WORDPRESS_URL} --allow-root
         wp user create 'othmane' 'othmane@mail.com' --role=author --user_pass='lcom' --allow-root
-        wp theme install twentynineteen --allow-root
-        wp theme activate twentynineteen --allow-root
+        wp theme install twentynineteen --activate --allow-root
+        wp plugin install redis-cache --activate --allow-root
         chown -R www-data:www-data /var/hjrifi.ma/wordpress
 
     # cd 
