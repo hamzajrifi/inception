@@ -24,6 +24,18 @@ services:
       - ./.env
     volumes:
       - db-wordpress:/var/hjrifi.ma
+  ftp-server:
+    depends_on:
+      - wordpress
+    networks:
+      - jrifi_net
+    ports :
+      - "21:21"
+    container_name: ftp-server
+    build: ./requirements/FTP_server/
+    restart: always
+    volumes:
+      - db-wordpress:/data/db_ftp
   adminer:
     depends_on:
       - mariadb
