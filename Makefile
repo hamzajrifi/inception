@@ -2,7 +2,7 @@ all: check_if_data_exist
 	cd srcs && docker-compose up --build 
 
 check_if_data_exist :
-	mkdir -p /home/hjrifi/data/mysql /home/hjrifi/data/wordpress /home/hjrifi/data/adminer 
+	mkdir -p /home/hjrifi/data/mysql /home/hjrifi/data/wordpress /home/hjrifi/data/adminer /home/hjrifi/data/website
 # mkdir -p /Users/hjrifi/data/mysql /Users/hjrifi/data/wordpress
 
 up:
@@ -25,7 +25,7 @@ delete_mariadb_db:
 	sudo rm -rf /home/hjrifi/data/mysql
 
 delete_all_db:
-	sudo rm -rf /home/hjrifi/data/mysql /home/hjrifi/data/wordpress /home/hjrifi/data/adminer 
+	sudo rm -rf /home/hjrifi/data/mysql /home/hjrifi/data/wordpress /home/hjrifi/data/adminer /home/hjrifi/data/website
 
 CONTAINER_COUNT := $(shell docker ps -aq | wc -l)
 VOLUME_COUNT := $(shell docker volume ls -q | wc -l)
@@ -46,7 +46,7 @@ fclean: clean
 		else \
 		echo "not volume found";\
 	fi
-	@if [ $(CONTAINER_COUNT) -gt 0 ]; then \
+	@if [ $(IMAGES_COUNT) -gt 0 ]; then \
 		docker rmi $$(docker images -q); \
 		echo "delete all volume"; \
 		else \

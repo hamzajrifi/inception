@@ -31,6 +31,7 @@ services:
       - jrifi_net
     ports :
       - "21:21"
+      - "40000-40100:40000-40100"
     container_name: ftp-server
     build: ./requirements/FTP_server/
     restart: always
@@ -46,6 +47,24 @@ services:
     restart: always
     volumes:
       - db-adminer:/var/adminer
+  redis:
+    depends_on:
+      - mariadb
+      - wordpress
+    networks:
+      - jrifi_net
+    container_name: redis
+    build: ./requirements/redis/
+    restart: always
+  website :
+    networks:
+      - jrifi_net
+    container_name: website
+    build: ./requirements/website/
+    restart : always
+    volumes:
+      - db-website:/var/hjrifi.ma/
+
   nginx:
     depends_on:
       - wordpress
@@ -63,6 +82,12 @@ services:
   
 
 volumes:
+  db-website:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/hjrifi/data/website
   db-mariadb:
     driver: local
     driver_opts:

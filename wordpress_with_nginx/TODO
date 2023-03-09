@@ -4,3 +4,5 @@ root / ~
 fastcgi fpm 
 
 redis and website
+
+ftp secure_chroot_dir

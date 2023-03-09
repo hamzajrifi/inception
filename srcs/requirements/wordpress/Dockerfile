@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN     apt-get update && apt-get install tzdata -y && \
-        apt-get install -y php-fpm php-mysql \
+        apt-get install -y php-fpm php-mysql php-redis \
         wget
 
 RUN     wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar

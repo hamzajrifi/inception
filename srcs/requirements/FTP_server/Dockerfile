@@ -19,18 +19,12 @@ RUN echo "listen=YES" >> /etc/vsftpd.conf && \
     echo "pasv_enable=YES" >> /etc/vsftpd.conf && \
     echo "pasv_min_port=40000" >> /etc/vsftpd.conf && \
     echo "pasv_max_port=40100" >> /etc/vsftpd.conf && \
-    echo "pasv_address=ftp-server" >> /etc/vsftpd.conf && \
+    echo "pasv_address=10.11.42.83" >> /etc/vsftpd.conf && \
     echo "local_root=/data/db_ftp" >> /etc/vsftpd.conf
 
-# RUN mkdir -p /data/db_ftp
 RUN mkdir -p /var/run/tmp_ftp
 
 RUN useradd -m -s /bin/bash hjrifi && \
     echo "hjrifi:lcom" | chpasswd
-
-# RUN chown -R hjrifi /data/db_ftp
-
-EXPOSE 21
-
 
 CMD ["vsftpd", "/etc/vsftpd.conf"]

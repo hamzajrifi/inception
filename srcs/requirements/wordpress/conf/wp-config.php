@@ -19,6 +19,12 @@
  * @package WordPress
  */
 
+//  #-------- config redid -------#
+define('WP_CACHE_KEY_SALT', 'hjrifi.42.fr');
+define('WP_CACHE', true);
+define('WP_REDIS_HOST', 'redis');
+define('WP_REDIS_PORT', '6379');
+
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define( 'DB_NAME', 'wordpress' );
@@ -40,12 +46,14 @@ define( 'DB_COLLATE', '' );
 
 
 
-#-------- config redid -------#
-define('WP_CACHE_KEY_SALT', 'your_unique_salt');
-define('WP_CACHE', true);
-define('WP_REDIS_HOST', 'redis');
-define('WP_REDIS_PORT', '6379');
-define('WP_REDIS_PASSWORD', 'lcom');
+# ---------- config redis ---------------
+// define('WP_CACHE', true);
+// define('WP_CACHE_KEY_SALT', 'hjrifi-unique-salt');
+// define('WP_CACHE_HOST', 'redis');
+// define('WP_CACHE_PORT', '6379');
+
+
+// define('WP_REDIS_PASSWORD', 'lcom');
 
 /**#@+
  * Authentication unique keys and salts.
