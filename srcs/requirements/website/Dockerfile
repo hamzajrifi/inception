@@ -1,5 +1,6 @@
 FROM debian:buster
 
-COPY index.html /var/hjrifi.ma/index.html
+RUN     apt-get update && apt-get install -y nginx
+COPY    index.html /var/hjrifi.ma/index.html
 
-CMD ["tail", "-F"]
+CMD ["nginx", "-g", "daemon off;"]

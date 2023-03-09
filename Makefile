@@ -2,8 +2,7 @@ all: check_if_data_exist
 	cd srcs && docker-compose up --build 
 
 check_if_data_exist :
-	mkdir -p /home/hjrifi/data/mysql /home/hjrifi/data/wordpress /home/hjrifi/data/adminer /home/hjrifi/data/website
-# mkdir -p /Users/hjrifi/data/mysql /Users/hjrifi/data/wordpress
+	mkdir -p /home/${USER}/data/mysql /home/${USER}/data/wordpress /home/${USER}/data/adminer /home/${USER}/data/website
 
 up:
 	cd srcs && docker-compose up
@@ -18,14 +17,14 @@ down:
 	cd srcs && docker-compose down
 
 delete_wp_db:
-	sudo rm -rf /home/hjrifi/data/wordpress
+	sudo rm -rf /home/${USER}/data/wordpress
 delete_adminer_db:
-	sudo rm -rf /home/hjrifi/data/adminer 
+	sudo rm -rf /home/${USER}/data/adminer 
 delete_mariadb_db:
-	sudo rm -rf /home/hjrifi/data/mysql
+	sudo rm -rf /home/${USER}/data/mysql
 
 delete_all_db:
-	sudo rm -rf /home/hjrifi/data/mysql /home/hjrifi/data/wordpress /home/hjrifi/data/adminer /home/hjrifi/data/website
+	sudo rm -rf /home/${USER}/data/mysql /home/${USER}/data/wordpress /home/${USER}/data/adminer /home/${USER}/data/website
 
 CONTAINER_COUNT := $(shell docker ps -aq | wc -l)
 VOLUME_COUNT := $(shell docker volume ls -q | wc -l)

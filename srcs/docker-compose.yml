@@ -23,7 +23,7 @@ services:
     env_file:
       - ./.env
     volumes:
-      - db-wordpress:/var/hjrifi.ma
+      - db-wordpress:/var/hjrifi.ma/wordpress
   ftp-server:
     depends_on:
       - wordpress
@@ -87,24 +87,24 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/hjrifi/data/website
+      device: /home/${USER}/data/website
   db-mariadb:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /home/hjrifi/data/mysql
+      device: /home/${USER}/data/mysql
   db-wordpress:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /home/hjrifi/data/wordpress
+      device: /home/${USER}/data/wordpress
   db-adminer:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /home/hjrifi/data/adminer
+      device: /home/${USER}/data/adminer
 networks:
   jrifi_net:

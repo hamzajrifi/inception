@@ -7,10 +7,10 @@ RUN       apt-get update && apt-get install -y redis-server
 # RUN     sed -i 's/# maxmemory <bytes>/maxmemory 124mb/' /etc/redis/redis.conf
 # RUN     sed -i 's/# maxmemory-policy noeviction/ maxmemory-policy allkeys-lru/' /etc/redis/redis.conf
 # maxmemory <bytes>
-# COPY    /conf/redis.conf /etc/redis/redis.conf
+COPY    /conf/redis.conf /etc/redis/redis.conf
 
 
 # maxmemory-policy noeviction
-CMD ["redis-server"]
+CMD ["redis-server", "/etc/redis/redis.conf"]
 #redis-cli info stats
 #redis-cli info server
