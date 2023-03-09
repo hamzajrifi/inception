@@ -25,6 +25,8 @@ delete_mariadb_db:
 
 delete_all_db:
 	sudo rm -rf /home/${USER}/data/mysql /home/${USER}/data/wordpress /home/${USER}/data/adminer /home/${USER}/data/website
+ctop:
+	cd srcs/requirements/ctop_container && docker build -t ctop /home/hjrifi/inception/srcs/requirements/ctop_container && docker run --rm -it --network=srcs_jrifi_net -v /var/run/docker.sock:/var/run/docker.sock  ctop
 
 CONTAINER_COUNT := $(shell docker ps -aq | wc -l)
 VOLUME_COUNT := $(shell docker volume ls -q | wc -l)

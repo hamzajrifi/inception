@@ -6,3 +6,5 @@ fastcgi fpm
 redis and website
 
 ftp secure_chroot_dir
+config file FTP
+WP_CACHE_KEY_SALT

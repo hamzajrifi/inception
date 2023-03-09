@@ -23,7 +23,7 @@ services:
     env_file:
       - ./.env
     volumes:
-      - db-wordpress:/var/hjrifi.ma/wordpress
+      - db-wordpress:/var/hjrifi.ma/
   ftp-server:
     depends_on:
       - wordpress
@@ -64,7 +64,8 @@ services:
     restart : always
     volumes:
       - db-website:/var/hjrifi.ma/
-
+    ports:
+      - "3000:3000"
   nginx:
     depends_on:
       - wordpress
@@ -79,6 +80,7 @@ services:
     volumes:
       - db-wordpress:/var/hjrifi.ma/
       - db-adminer:/var/adminer
+
   
 
 volumes:
